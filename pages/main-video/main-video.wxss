@@ -1,0 +1,12 @@
+/* pages/main-video/main-video.wxss */
+/* 你直接给最外层设置displex 在小程序中实际上是给内层元素设置，所以要额外给内层元素设置 */
+.video-list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0 10rpx;
+}
+
+.video-list .item{
+  width:48%;
+}
