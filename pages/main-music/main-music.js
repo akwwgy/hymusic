@@ -5,12 +5,15 @@ import querySelect from "../../utils/query_select"
 import throttle from "../../utils/throttle"
 
 const querySelectThrottle = throttle(querySelect)
+//拿到app
+const app = getApp()
 
 Page({
   data:{
     searchValue:"",
     banners:[],
     bannerHeight:150,
+    screenWidth:375,
 
     recommendSongs:[],
 
@@ -27,6 +30,8 @@ Page({
   recommendStore.onState("recommendSongs",(value)=>{
     this.setData({recommendSongs:value.slice(0,6)})
   })
+  //获取屏幕尺寸
+  this.setData({screenWidth:app.globalData.screenWidth})
  
   },
   async fetchMusicBanner(){

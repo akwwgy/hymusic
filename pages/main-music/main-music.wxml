@@ -40,7 +40,10 @@ style="height: {{bannerHeight}}px;"
 <!-- 4.热门歌单 -->
 <view class="hot-menu">
   <area-header title="热门歌单"/>
-  <scroll-view class="list" scroll-x enable-flex>
+  <scroll-view class="list" 
+  scroll-x 
+  enable-flex  
+  style="width:{{screenWidth}}px">
     <block wx:for="{{hotMenuList}}" wx:key="id">
       <view class="item">
         <menu-item  itemData="{{item}}"/>
