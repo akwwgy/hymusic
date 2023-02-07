@@ -1,5 +1,5 @@
 // pages/main-music/main-music.js
-import {gegetMusicBannert, getMusicBanner} from '../../services/music'
+import {getPlaylistDetail, getMusicBanner} from '../../services/music'
 import querySelect from "../../utils/query_select"
 import throttle from "../../utils/throttle"
 
@@ -9,14 +9,23 @@ Page({
   data:{
     searchValue:"",
     banners:[],
-    bannerHeight:150
+    bannerHeight:150,
+
+    recommendSongs:[]
   },
   onLoad(){
    this.fetchMusicBanner()
+   this.fetchRecommendSongs()
   },
   async fetchMusicBanner(){
     const res = await getMusicBanner()
     this.setData({banners:res.banners})
+  },
+  async fetchRecommendSongs(){
+    const res = await getPlaylistDetail(3778678)
+    const playlist = res.playlist
+    const recommendSongs = playlist.tracks.slice(0,6)
+    this.setData({recommendSongs:recommendSongs})
   },
   //界面的事件监听方法
   onSearchClick(){
