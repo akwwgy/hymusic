@@ -37,7 +37,19 @@ style="height: {{bannerHeight}}px;"
   </view>
 </view>
 
-<!-- 3.巅峰榜的展示 -->
+<!-- 4.热门歌单 -->
+<view class="hot-menu">
+  <area-header title="热门歌单"/>
+  <scroll-view class="list" scroll-x enable-flex>
+    <block wx:for="{{hotMenuList}}" wx:key="id">
+      <view class="item">
+        <menu-item  itemData="{{item}}"/>
+      </view>
+    </block>
+  </scroll-view>
+</view>
+
+<!-- .巅峰榜的展示 -->
 <view class="ranking">
   <area-header title="巅峰榜" hasMore="{{false}}"/>
 </view>

@@ -16,3 +16,15 @@ page{
 .banner-image{
   width: 100%;
 }
+
+.hot-menu .list{
+  display: flex;
+}
+
+/* 歌单样式 */
+.list .item{
+  /* 不希望缩放 */
+  flex-shrink: 0;
+  width: 220rpx;
+  margin-right:20rpx
+}

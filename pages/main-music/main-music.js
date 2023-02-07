@@ -1,5 +1,5 @@
 // pages/main-music/main-music.js
-import {getMusicBanner} from "../../services/music"
+import {getMusicBanner,getSongMenuList} from "../../services/music"
 import {recommendStore} from "../../store/recommendStore"
 import querySelect from "../../utils/query_select"
 import throttle from "../../utils/throttle"
@@ -12,11 +12,15 @@ Page({
     banners:[],
     bannerHeight:150,
 
-    recommendSongs:[]
+    recommendSongs:[],
+
+    //歌单数据
+    hotMenuList:[]
   },
   onLoad(){
    this.fetchMusicBanner()
   //  this.fetchRecommendSongs()
+   this.fetchHotSongMenuList()
 
    //发起action
   recommendStore.dispatch("fetchRecommendSongsAction")
@@ -35,6 +39,15 @@ Page({
   //   const recommendSongs = playlist.tracks.slice(0,6)
   //   this.setData({recommendSongs:recommendSongs})
   // },
+
+  // 获取热门歌单
+  async fetchHotSongMenuList(){
+    getSongMenuList().then(res=>{
+      console.log(res);
+      this.setData({hotMenuList:res.playlists})
+      
+    })
+  },
 
   //界面的事件监听方法
   onSearchClick(){
