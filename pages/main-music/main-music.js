@@ -36,5 +36,8 @@ Page({
     //要使用节流，不需要执行八次，执行一次就行了
     this.setData({bannerHeight:res[0].height})
   })
+  },
+  onRecommendMoreClick(){
+    console.log(111);
   }
 })

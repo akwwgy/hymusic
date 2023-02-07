@@ -7,7 +7,7 @@
   bind:click-input="onSearchClick"
 />
 
-<!-- 轮播图展示 -->
+<!-- 2.轮播图展示 -->
 <swiper 
 class="banner"
 circular
@@ -25,3 +25,13 @@ style="height: {{bannerHeight}}px;"
     </swiper-item>
   </block>
 </swiper>
+
+<!-- 3.推荐歌曲的展示 -->
+<view class="recommend">
+  <area-header title="推荐歌曲" bind:moreclick="onRecommendMoreClick"/>
+</view>
+
+<!-- 3.巅峰榜的展示 -->
+<view class="ranking">
+  <area-header title="巅峰榜" hasMore="{{false}}"/>
+</view>
