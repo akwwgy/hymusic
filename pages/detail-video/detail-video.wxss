@@ -1,4 +1,29 @@
 /* pages/detail-video/detail-video.wxss */
-.video{
-  width:100%;
+page {
+  padding-top: 430rpx;
+}
+
+.video {
+  width: 100%;
+  position: fixed;
+  top: 0;
+}
+
+.info {
+  padding: 30rpx;
+}
+
+.info .title {
+  font-weight: 700;
+}
+
+.info .desc, .info .other {
+  font-size: 24rpx;
+  margin-top: 10rpx;
+  color: #666;
+}
+
+/* 相关视频 */
+.recommend {
+  padding: 30rpx;
 }

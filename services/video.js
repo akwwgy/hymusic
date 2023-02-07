@@ -18,3 +18,20 @@ export function getMVUrl(id){
     }
   })
 }
+
+export function getMVInfo(mvid){
+  return hyRequest.get({
+    url:'/mv/detail',
+    data:{
+      mvid
+    }
+  })
+}
+export function getMVRelated(id){
+  return hyRequest.get({
+    url:'/related/allvideo',
+    data:{
+      id
+    }
+  })
+}
