@@ -16,5 +16,6 @@ page{
 .banner-image{
   width: 100%;
 }
-
-/* 歌单样式 */  
+.ranking {
+  padding-bottom: 20px;
+} 
