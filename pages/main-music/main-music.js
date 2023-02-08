@@ -1,6 +1,7 @@
 // pages/main-music/main-music.js
 import {getMusicBanner,getSongMenuList} from "../../services/music"
 import {recommendStore} from "../../store/recommendStore"
+import rankingStore from "../../store/rangkingStore"
 import querySelect from "../../utils/query_select"
 import throttle from "../../utils/throttle"
 
@@ -27,6 +28,7 @@ Page({
    this.fetchHotSongMenuList()
 
    //发起action
+  rankingStore.dispatch("fetchRankingDataAction")
   recommendStore.dispatch("fetchRecommendSongsAction")
   recommendStore.onState("recommendSongs",(value)=>{
     this.setData({recommendSongs:value.slice(0,6)})

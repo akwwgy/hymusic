@@ -52,7 +52,6 @@ style="height: {{bannerHeight}}px;"
   </scroll-view>
 </view> -->
 <menu-area title="热门歌单" menuList="{{hotMenuList}}" />
-
 <!-- 5.推荐歌单 -->
 <menu-area title="推荐歌单" menuList="{{recMenuList}}" />
 
