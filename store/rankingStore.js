@@ -1,6 +1,6 @@
 import { HYEventStore } from "hy-event-store"
 import {getPlaylistDetail} from "../services/music"
-const rankingsIds = {
+export const rangkingMap = {
   newRanking:3779629,
   originRanking:2884035,
   upRanking:19723756
@@ -13,15 +13,15 @@ const rankingStore = new HYEventStore({
     upRanking:{}
   },
   actions:{
-    fetchRankingDataAction(){
-      for(const id of rankingsIds){
+    fetchRankingDataAction(ctx){
+      for(const key in rangkingMap){
+        const id = rangkingMap[key]
         getPlaylistDetail(id).then(res=>{
-          console.log(res);
-          
+          ctx[key] = res.playlist
         })
       }
     }
   }
 })
 
-export default rangkingStore
+export default rankingStore

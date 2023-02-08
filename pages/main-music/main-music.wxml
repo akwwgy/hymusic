@@ -58,4 +58,10 @@ style="height: {{bannerHeight}}px;"
 <!-- .巅峰榜的展示 -->
 <view class="ranking">
   <area-header title="巅峰榜" hasMore="{{false}}"/>
+  <view class="ranking-list">
+   <!-- wx:for遍历对象 -->
+    <block wx:for="{{rankingInfos}}" wx:key="id">
+      <view>{{item.name}}</view>
+    </block>
+  </view>
 </view>

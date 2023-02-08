@@ -1,7 +1,7 @@
 // pages/main-music/main-music.js
 import {getMusicBanner,getSongMenuList} from "../../services/music"
-import {recommendStore} from "../../store/recommendStore"
-import rankingStore from "../../store/rangkingStore"
+import recommendStore from "../../store/recommendStore"
+import rankingStore from "../../store/rankingStore"
 import querySelect from "../../utils/query_select"
 import throttle from "../../utils/throttle"
 
@@ -20,19 +20,26 @@ Page({
 
     //歌单数据
     hotMenuList:[],
-    recMenuList:[]
+    recMenuList:[],
+
+    //巅峰帮数据
+    isRankingData: false,
+    rankingInfos:{}
   },
   onLoad(){
    this.fetchMusicBanner()
   //  this.fetchRecommendSongs()
    this.fetchHotSongMenuList()
 
+   recommendStore.onState("recommendSongInfo", this.handleRecommendSongs)
    //发起action
-  rankingStore.dispatch("fetchRankingDataAction")
   recommendStore.dispatch("fetchRecommendSongsAction")
-  recommendStore.onState("recommendSongs",(value)=>{
-    this.setData({recommendSongs:value.slice(0,6)})
-  })
+  
+  rankingStore.onState("newRanking", this.handleNewRanking)
+  rankingStore.onState("originRanking", this.handleOriginRanking)
+  rankingStore.onState("upRanking", this.handleUpRanking)
+  rankingStore.dispatch("fetchRankingDataAction")
+
   //获取屏幕尺寸
   this.setData({screenWidth:app.globalData.screenWidth})
  
@@ -51,7 +58,6 @@ Page({
   // 获取热门歌单
   async fetchHotSongMenuList(){
     getSongMenuList().then(res=>{
-      console.log(res);
       this.setData({hotMenuList:res.playlists})
     })
     getSongMenuList("华语").then(res=>{
@@ -82,5 +88,35 @@ Page({
     wx.navigateTo({
       url: '/pages/detail-song/detail-song'
     })
-  }
+  },
+    // ====================== 从Store中获取数据 ======================
+    handleRecommendSongs(value) {
+      if (!value.tracks) return
+      this.setData({ recommendSongs: value.tracks.slice(0, 6) })
+    },
+    handleNewRanking(value) {
+      // console.log("新歌榜:", value);
+      if (!value.name) return
+      this.setData({ isRankingData: true })
+      const newRankingInfos = { ...this.data.rankingInfos, newRanking: value }
+      this.setData({ rankingInfos: newRankingInfos })
+    },
+    handleOriginRanking(value) {
+      // console.log("原创榜:", value);
+      if (!value.name) return
+      this.setData({ isRankingData: true })
+      const newRankingInfos = { ...this.data.rankingInfos, originRanking: value }
+      this.setData({ rankingInfos: newRankingInfos })
+    },
+    handleUpRanking(value) {
+      // console.log("飙升榜:", value);
+      if (!value.name) return
+      this.setData({ isRankingData: true })
+      const newRankingInfos = { ...this.data.rankingInfos, upRanking: value }
+      this.setData({ rankingInfos: newRankingInfos })
+    },
+
+    onUnload() {
+      recommendStore.offState("recommendSongs", this.handleRecommendSongs)
+    }
 })
