@@ -38,7 +38,7 @@ style="height: {{bannerHeight}}px;"
 </view>
 
 <!-- 4.热门歌单 -->
-<view class="hot-menu">
+<!-- <view class="hot-menu">
   <area-header title="热门歌单"/>
   <scroll-view class="list" 
   scroll-x 
@@ -50,7 +50,11 @@ style="height: {{bannerHeight}}px;"
       </view>
     </block>
   </scroll-view>
-</view>
+</view> -->
+<menu-area title="热门歌单" menuList="{{hotMenuList}}" />
+
+<!-- 5.推荐歌单 -->
+<menu-area title="推荐歌单" menuList="{{recMenuList}}" />
 
 <!-- .巅峰榜的展示 -->
 <view class="ranking">

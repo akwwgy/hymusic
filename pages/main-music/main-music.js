@@ -18,7 +18,8 @@ Page({
     recommendSongs:[],
 
     //歌单数据
-    hotMenuList:[]
+    hotMenuList:[],
+    recMenuList:[]
   },
   onLoad(){
    this.fetchMusicBanner()
@@ -50,7 +51,9 @@ Page({
     getSongMenuList().then(res=>{
       console.log(res);
       this.setData({hotMenuList:res.playlists})
-      
+    })
+    getSongMenuList("华语").then(res=>{
+      this.setData({recMenuList:res.playlists})
     })
   },
 
