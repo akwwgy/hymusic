@@ -13,7 +13,7 @@ Page({
   data:{
     searchValue:"",
     banners:[],
-    bannerHeight:150,
+    bannerHeight:0,
     screenWidth:375,
 
     recommendSongs:[],
