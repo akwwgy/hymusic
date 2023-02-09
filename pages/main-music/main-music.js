@@ -84,13 +84,14 @@ Page({
     this.setData({bannerHeight:res[0].height})
   })
   },
-  onRecommendMoreClick(){
+  onRecommendMoreClick() {
     wx.navigateTo({
-      url: '/pages/detail-song/detail-song'
+      url: '/pages/detail-song/detail-song?type=recommend',
     })
   },
     // ====================== 从Store中获取数据 ======================
     handleRecommendSongs(value) {
+      //第一次是空对象，要判断一下，如果是空 直接返回
       if (!value.tracks) return
       this.setData({ recommendSongs: value.tracks.slice(0, 6) })
     },

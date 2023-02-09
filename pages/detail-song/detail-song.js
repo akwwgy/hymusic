@@ -20,7 +20,9 @@ Page({
     const key = options.key
     this.data.key = key
     rankingStore.onState(key,this.handleRanking)
-   }
+   }else if (type === "recommend") {
+    recommendStore.onState("recommendSongInfo", this.handleRanking)
+  }
   },
   handleRanking(value){
     this.setData({songInfo:value})
@@ -28,7 +30,8 @@ Page({
   onUnload(){
     if (this.data.type === "ranking") {
       rankingStore.offState(this.data.key, this.handleRanking)
-  }
+    }else if (type === "recommend") {
+      recommendStore.onState("recommendSongInfo", this.handleRanking)
+    }
 }
-
 })
