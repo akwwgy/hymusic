@@ -118,10 +118,9 @@ Page({
 
     onUnload() {
       recommendStore.offState("recommendSongs", this.handleRecommendSongs)
-
-    rankingStore.offState("newRanking", this.handleNewRanking)
-    rankingStore.offState("originRanking", this.handleOriginRanking)
-    rankingStore.offState("upRanking", this.handleUpRanking)
+      rankingStore.offState("newRanking", this.handleNewRanking)
+      rankingStore.offState("originRanking", this.handleOriginRanking)
+      rankingStore.offState("upRanking", this.handleUpRanking)
 
     }
 })

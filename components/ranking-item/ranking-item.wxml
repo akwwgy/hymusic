@@ -15,6 +15,6 @@
   </view>
   <view class="album">
     <image class="image" src="{{itemData.coverImgUrl}}"></image>
-    <view class="count">{{fmt.formatCount(itemData.playCount)}}</view>
+    <view class="count">{{fmt.countFormat(itemData.playCount)}}</view>
   </view>
 </view>
