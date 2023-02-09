@@ -27,7 +27,7 @@ style="height: {{bannerHeight}}px;"
 </swiper>
 
 <!-- 3.推荐歌曲的展示 -->
-<view class="recommend">
+<view class="recommend"  wx:if="{{recommendSongs.length}}">
   <area-header title="推荐歌曲" bind:moreclick="onRecommendMoreClick"/>
   <view class="list">
     <block wx:for="{{recommendSongs}}" wx:key="id">

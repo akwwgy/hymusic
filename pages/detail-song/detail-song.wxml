@@ -1,4 +1,7 @@
 <!--pages/detail-song/detail-song.wxml-->
+<!-- <view class="header" wx:if="{{type === 'menu' && songInfo.name}}">
+  <menu-header songInfo="{{songInfo}}"/>
+</view> -->
 <view class="header" wx:if="{{type === 'menu' && songInfo.name}}">
   <menu-header songInfo="{{songInfo}}"/>
 </view>

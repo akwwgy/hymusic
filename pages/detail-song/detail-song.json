@@ -1,5 +1,6 @@
 {
   "usingComponents": {
+    "menu-header":"/components/menu-header/menu-header",
     "song-item-v2":"/components/song-item-v2/song-item-v2"
   }
 }

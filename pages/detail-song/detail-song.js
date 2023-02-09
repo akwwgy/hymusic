@@ -17,6 +17,8 @@ Page({
     //type：ranking->榜单数据
     //type: recommend->推荐数据
     const type = options.type
+  // this.data.type = type
+    this.setData({ type })
 
    //获取store里面的榜单数据
    if(type==="ranking"){
