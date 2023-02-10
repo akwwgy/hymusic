@@ -1,4 +1,5 @@
 <!--pages/music-player/music-player.wxml-->
+<wxs src="/utils/format.wxs" module="fmt"></wxs>
 <!-- 背景展示 -->
 <!-- 1.背景 -->
 <image class="bg-image" mode="aspectFill" src="{{currentSong.al.picUrl}}"></image>
@@ -16,8 +17,56 @@
 <!-- 3.具体内容 -->
 <swiper   style="height: {{contentHeight}}px;"
   bindchange="onSwiperChange">
-  <swiper-item>
-    歌曲
+  <swiper-item class="music">
+    <view class="album">
+      <image class="image" src="{{currentSong.al.picUrl}}" mode="widthFix"></image>
+    </view>
+    <view class="info">
+      <view class="name">{{currentSong.name}}</view>
+      <view class="singer">{{currentSong.ar[0].name}}</view>
+    </view>
+    <view class="lyric">
+      {{currentLyricText}}歌词
+    </view>
+    <view class="progress">
+      <slider 
+        class="slider" 
+        block-size="{{12}}" 
+        value="{{sliderValue}}"
+        bindchange="onSliderChange"
+        bindchanging="onSliderChanging"
+      />
+      <view class="time">
+        <view class="current">{{fmt.formatTime(currentTime)}}</view>
+        <view class="duration">{{fmt.formatTime(durationTime)}}</view>
+      </view>
+    </view>
+    <view class="operation">
+      <image 
+        class="btn btn-mode"
+        src="/assets/images/player/play_{{playModeName}}.png"
+        bindtap="onModeBtnTap"
+      />
+      <image 
+        class="btn btn-prev"
+        src="/assets/images/player/play_prev.png"
+        bindtap="onPrevBtnTap"
+      />
+      <image 
+        class="btn btn-play"
+        src="/assets/images/player/play_{{ isPlaying ? 'pause': 'resume' }}.png"
+        bindtap="onPlayOrPauseTap"
+      />
+      <image 
+        class="btn btn-next"
+        src="/assets/images/player/play_next.png"
+        bindtap="onNextBtnTap"
+      />
+      <image 
+        class="btn btn-music"
+        src="/assets/images/player/play_music.png"
+      />
+    </view>
   </swiper-item>
   <swiper-item>
     歌词

@@ -12,7 +12,16 @@ Page({
 
     id:0,
     currentSong: {},
-    lycString:""
+    currentTime: 0,
+    durationTime: 0,
+    lycString:"",
+
+    playModeIndex: 0,
+    playModeName: "order",
+
+    sliderValue: 0,
+    isSliderChanging: false,
+
   },
   /**
    * 生命周期函数--监听页面加载
@@ -24,7 +33,7 @@ Page({
      // 设备信息
      this.setData({ statusHeight: app.globalData.statusHeight })
      this.setData({ contentHeight: app.globalData.windowHeight })
-     
+
     // 歌曲请求
     getSongDetail(id).then(res => {
       const currentSong = res.songs[0]
@@ -39,6 +48,9 @@ Page({
   onSwiperChange(event) {
     const currentPage = event.detail.current
     this.setData({ currentPage })
+  },
+  onBackTap() {
+    wx.navigateBack()
   },
   onUnload() {
 

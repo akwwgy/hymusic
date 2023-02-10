@@ -9,8 +9,6 @@ var countFormat = function(count) {
   }
 }
 
-
-
 function padLeftZero(str) {
   str = str.toString()
   return ("00" + str).slice(str.length);
@@ -20,19 +18,29 @@ function test() {
   return "呵呵呵"
 }
 
-function formatDuration(duration, isMilliseconds) {
-  isMilliseconds = isMilliseconds === undefined
-  if (isMilliseconds) {
-    duration = duration / 1000
-  }
-
-  var minute = Math.floor(duration / 60)
-  var second = Math.floor(duration) % 60
-
-  return padLeftZero(minute) + ":" + padLeftZero(second)
+// 2 -> 02
+// 24 -> 24
+function padLeft(time) {
+  time = time + ""
+  return ("00" + time).slice(time.length)
 }
+
+// 对time进行格式化
+// 100 -> 01:40
+function formatTime(time) {
+  // 0.将毫秒转成秒
+  time = time / 1000
+
+  // 1.获取时间
+  var minute = Math.floor(time / 60)
+  var second = Math.floor(time) % 60
+
+  // 2.拼接字符串
+  return padLeft(minute) + ":" + padLeft(second)
+}
+
 
 module.exports = {
   countFormat: countFormat,
-  formatDuration: formatDuration
+  formatTime: formatTime
 }
