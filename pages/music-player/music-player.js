@@ -1,5 +1,6 @@
 // pages/music-player/music-player.js
 import { throttle } from "underscore"
+import {parseLyric} from "../../utils/parse-lyric"
 import {getSongDetail,getSongLyric} from "../../services/player"
 
 const app = getApp()
@@ -18,7 +19,11 @@ Page({
     currentSong: {},
     currentTime: 0,
     durationTime: 0,
+
     lycString:"",
+    lyricInfos:[],
+    currentLyricIndex: 0,
+    currentLyricText: "",
 
     playModeIndex: 0,
     playModeName: "order",
@@ -49,7 +54,10 @@ Page({
       this.setData({ durationTime: currentSong.dt })
     })
     getSongLyric(id).then(res => {
-      this.setData({lycString:res.lrc.lyric})
+      const lyricString = res.lrc.lyric
+      const lyricInfos = parseLyric(lyricString)
+      this.setData({ lyricInfos })
+      console.log(this.data.lyricInfos);
     })
 
     // 3.播放当前的歌曲
