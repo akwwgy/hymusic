@@ -10,6 +10,7 @@ App({
       success:(res)=>{
         this.globalData.screenWidth = res.screenWidth
         this.globalData.screenHeight = res.screenHeight
+        this.globalData.statusHeight = res.statusBarHeight
       }
     })
   }

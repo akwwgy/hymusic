@@ -76,3 +76,64 @@ export {recommendStore}
 }
 ```
 
+## 4.插槽
+
+name对应slot
+
+vue用template
+
+```html
+<view class="status" style="height: {{statusHeight}}px;"></view>
+
+<view class="nav-bar">
+  <view class="left" bindtap="onLeftTap">
+    <view class="slot"><slot name="left"></slot></view>
+    <view class="default"><van-icon class="icon" name="arrow-left" /></view>
+  </view>
+  <view class="center">
+    <view class="slot"><slot name="center"></slot></view>
+    <view class="default">
+      <view class="title">{{title}}</view>
+    </view>
+  </view>
+  <view class="right"></view>
+</view>
+```
+
+```html
+<nav-bar bind:leftclick="onBackTap">
+  <view slot="center" class="tab">
+    <view class="{{currentPage === 0 ? 'active': ''}}">歌曲</view>
+    <view class="divider">|</view>
+    <view class="{{currentPage === 1 ? 'active': ''}}">歌词</view>
+  </view>
+</nav-bar>
+```
+
+你想使用多个插槽必须在组件的js中定义
+
+```json
+ options: {
+    multipleSlots: true
+  },
+```
+
+小程序没有插槽默认内容设置
+
+所以只能定义css样式来控制
+
+```css
+.slot:empty + .default {
+  display: block;
+}
+```
+
+```html
+  <view class="left" bindtap="onLeftTap">
+    <view class="slot"><slot name="left"></slot></view>
+    <view class="default">
+      <van-icon class="icon" name="arrow-left" />
+    </view>
+  </view>
+```
+

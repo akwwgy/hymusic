@@ -13,5 +13,21 @@ page {
 /* 在image上盖上一个bg-cover */
 .bg-cover {
   background-color: rgba(0,0,0,.5);
+  /* 毛玻璃关键样式 */
   backdrop-filter: blur(30px);
+}
+
+/* 标题 */
+.tab {
+  display: flex;
+  font-size: 24rpx;
+  color: #aaa;
+}
+
+.tab .divider {
+  margin: 0 8rpx;
+}
+
+.tab .active {
+  color: #fff;
 }
