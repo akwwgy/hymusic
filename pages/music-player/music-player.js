@@ -22,6 +22,7 @@ Page({
     playModeIndex: 0,
     playModeName: "order",
 
+    //滑动条
     sliderValue: 0,
     isSliderChanging: false,
 
@@ -41,6 +42,7 @@ Page({
     getSongDetail(id).then(res => {
       const currentSong = res.songs[0]
       this.setData({ currentSong })
+      //设置歌曲总时间
       this.setData({ durationTime: currentSong.dt })
     })
     getSongLyric(id).then(res => {
@@ -50,8 +52,20 @@ Page({
     // 3.播放当前的歌曲
     audioContext.stop()
     audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
-    audioContext.autoplay = true
+    audioContext.autoplay = false
+
+    //4.监听播放的进度
+    audioContext.onTimeUpdate(()=>{
+      //拿到实时时间  audioContext.currentTime
+      this.setData({currentTime:audioContext.currentTime*1000})
+
+      //修改滑动条
+      const sliderValue = this.data.currentTime / this.data.durationTime * 100
+      this.setData({ sliderValue })
+    })
   },
+
+
   //轮播图监听
   onSwiperChange(event) {
     const currentPage = event.detail.current
