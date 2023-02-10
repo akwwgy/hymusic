@@ -42,3 +42,37 @@ export {recommendStore}
   })
 ```
 
+## 2.实现自定义导航
+
+```json
+{
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "white",
+  "usingComponents": {
+    "nav-bar": "/components/nav-bar/nav-bar"
+  }
+}
+```
+
+## 3.毛玻璃关键样式
+
+```css
+<image class="bg-image" mode="aspectFill" src="{{currentSong.al.picUrl}}"></image>
+<view class="bg-cover"></view>
+
+
+.bg-image, .bg-cover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/* 在image上盖上一个bg-cover */
+.bg-cover {
+  background-color: rgba(0,0,0,.5);
+  backdrop-filter: blur(30px);
+}
+```
+

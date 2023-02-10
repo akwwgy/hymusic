@@ -1,1 +1,17 @@
 /* pages/music-player/music-player.wxss */
+page {
+  color: #fff;
+}
+.bg-image, .bg-cover {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+/* 在image上盖上一个bg-cover */
+.bg-cover {
+  background-color: rgba(0,0,0,.5);
+  backdrop-filter: blur(30px);
+}

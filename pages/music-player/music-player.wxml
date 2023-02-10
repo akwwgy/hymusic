@@ -1,3 +1,5 @@
 <!--pages/music-player/music-player.wxml-->
-<view>{{currentSong.name}}</view>
-<image src="{{currentSong.al.picUrl}}" mode="widthFix"/>
+<!-- 背景展示 -->
+<!-- 1.背景 -->
+<image class="bg-image" mode="aspectFill" src="{{currentSong.al.picUrl}}"></image>
+<view class="bg-cover"></view>
