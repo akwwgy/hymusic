@@ -89,7 +89,7 @@ Page({
       this.setData({ currentLyricIndex: index, currentLyricText: this.data.lyricInfos[index].text })
       // 改变scrollTop
       console.log(this.data.currentLyricText);
-      // this.setData({ lyricScrollTop: index * 35 })
+      this.setData({ lyricScrollTop: index * 35 })
     })
       audioContext.onWaiting(() => {
         audioContext.pause()
