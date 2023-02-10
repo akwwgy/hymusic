@@ -3,6 +3,9 @@ import {getSongDetail,getSongLyric} from "../../services/player"
 
 const app = getApp()
 
+//创建一个播放器
+const audioContext = wx.createInnerAudioContext()
+
 Page({
   data: {
     //状态栏高度
@@ -43,6 +46,10 @@ Page({
     getSongLyric(id).then(res => {
       this.setData({lycString:res.lrc.lyric})
     })
+
+    // 3.播放当前的歌曲
+    audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+    audioContext.autoplay = true
   },
   //轮播图监听
   onSwiperChange(event) {
