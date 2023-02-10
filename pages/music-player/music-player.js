@@ -48,6 +48,7 @@ Page({
     })
 
     // 3.播放当前的歌曲
+    audioContext.stop()
     audioContext.src = `https://music.163.com/song/media/outer/url?id=${id}.mp3`
     audioContext.autoplay = true
   },
