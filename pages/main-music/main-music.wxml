@@ -37,6 +37,8 @@ style="height: {{bannerHeight}}px;"
   </view>
 </view>
 
+
+
 <!-- 4.热门歌单 -->
 <!-- <view class="hot-menu">
   <area-header title="热门歌单"/>

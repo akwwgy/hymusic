@@ -12,3 +12,14 @@
     <view class="{{currentPage === 1 ? 'active': ''}}">歌词</view>
   </view>
 </nav-bar>
+
+<!-- 3.具体内容 -->
+<swiper   style="height: {{contentHeight}}px;"
+  bindchange="onSwiperChange">
+  <swiper-item>
+    歌曲
+  </swiper-item>
+  <swiper-item>
+    歌词
+  </swiper-item>
+</swiper>

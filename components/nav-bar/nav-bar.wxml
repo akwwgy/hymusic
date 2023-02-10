@@ -4,7 +4,9 @@
 <view class="nav-bar">
   <view class="left" bindtap="onLeftTap">
     <view class="slot"><slot name="left"></slot></view>
-    <view class="default"><van-icon class="icon" name="arrow-left" /></view>
+    <view class="default">
+      <van-icon class="icon" name="arrow-left" />
+    </view>
   </view>
   <view class="center">
     <view class="slot"><slot name="center"></slot></view>

@@ -7,8 +7,8 @@ Page({
   data: {
     //状态栏高度
     statusHeight: 20,
-
-
+    currentPage: 0,
+    contentHeight: 555,
 
     id:0,
     currentSong: {},
@@ -23,7 +23,8 @@ Page({
 
      // 设备信息
      this.setData({ statusHeight: app.globalData.statusHeight })
-
+     this.setData({ contentHeight: app.globalData.windowHeight })
+     
     // 歌曲请求
     getSongDetail(id).then(res => {
       const currentSong = res.songs[0]
@@ -33,6 +34,11 @@ Page({
     getSongLyric(id).then(res => {
       this.setData({lycString:res.lrc.lyric})
     })
+  },
+  //轮播图监听
+  onSwiperChange(event) {
+    const currentPage = event.detail.current
+    this.setData({ currentPage })
   },
   onUnload() {
 
