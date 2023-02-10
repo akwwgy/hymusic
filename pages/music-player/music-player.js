@@ -25,6 +25,8 @@ Page({
     currentLyricIndex: 0,
     currentLyricText: "",
 
+    lyricScrollTop: 0,
+
     playModeIndex: 0,
     playModeName: "order",
     //歌曲暂停开始按钮
@@ -57,7 +59,7 @@ Page({
       const lyricString = res.lrc.lyric
       const lyricInfos = parseLyric(lyricString)
       this.setData({ lyricInfos })
-      console.log(this.data.lyricInfos);
+      // console.log(this.data.lyricInfos);
     })
 
     // 3.播放当前的歌曲
@@ -68,18 +70,34 @@ Page({
     //4.监听播放的进度
     const throttleUpdateProgress = throttle(this.updateProgress,500,{leading:false})
     audioContext.onTimeUpdate(()=>{
+      //更新歌曲进度
       if (!this.data.isSliderChanging) {
         //调用节流函数，
         throttleUpdateProgress()
       }
+      //2.匹配歌词展示
+      if (!this.data.lyricInfos.length) return
+      let index = this.data.lyricInfos.length - 1
+      for (let i = 0; i < this.data.lyricInfos.length; i++) {
+        const lyricItem = this.data.lyricInfos[i]
+        if (lyricItem.time >= audioContext.currentTime*1000) {
+          index = i - 1
+          break
+        }
+      }
+      if (index === this.data.currentLyricIndex) return
+      this.setData({ currentLyricIndex: index, currentLyricText: this.data.lyricInfos[index].text })
+      // 改变scrollTop
+      console.log(this.data.currentLyricText);
+      // this.setData({ lyricScrollTop: index * 35 })
     })
-    //   audioContext.onWaiting(() => {
-    //     audioContext.pause()
-    // })
+      audioContext.onWaiting(() => {
+        audioContext.pause()
+    })
 
-    // audioContext.onCanplay(() => {
-    //     audioContext.play()
-    // })  
+    audioContext.onCanplay(() => {
+        audioContext.play()
+    })  
   },
   updateProgress(){
     //拿到实时时间  audioContext.currentTime
