@@ -45,7 +45,7 @@ Page({
   onUnload(){
     if (this.data.type === "ranking") {
       rankingStore.offState(this.data.key, this.handleRanking)
-    }else if (type === "recommend") {
+    }else if (this.data.type === "recommend") {
       recommendStore.onState("recommendSongInfo", this.handleRanking)
     }
 }
