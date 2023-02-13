@@ -1,8 +1,6 @@
 // components/song-item-v2/song-item-v2.js
+import playerStore from "../../store/playerStore"
 Component({
-  /**
-   * 组件的属性列表
-   */
   properties: {
     itemData: {
       type: Object,
@@ -13,15 +11,13 @@ Component({
       value: -1
     }
   },
-  /**
-   * 组件的方法列表
-   */
   methods: {
-    onSongItemTap(){
+    onSongItemTap() {
       const id = this.properties.itemData.id
       wx.navigateTo({
         url: '/pages/music-player/music-player?id=' + id,
       })
+      playerStore.dispatch("playMusicWithSongId", id)
     }
   }
 })

@@ -1,5 +1,4 @@
 // components/nav-bar/nav-bar.js
-
 const app = getApp()
 
 Component({
@@ -18,6 +17,11 @@ Component({
   lifetimes: {
     attached() {
       this.setData({ statusHeight: app.globalData.statusHeight })
+    }
+  },
+  methods: {
+    onLeftTap() {
+      this.triggerEvent("leftclick")
     }
   }
 })

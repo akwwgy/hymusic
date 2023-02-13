@@ -181,3 +181,32 @@ export function parseLyric(lyricString) {
 }
 ```
 
+## 6.歌词的页面距离
+
+```html
+ <view 
+          class="item {{index === currentLyricIndex ? 'active': ''}}"
+          style="padding-top: {{index === 0 ? (contentHeight/2-80): 0}}px; padding-bottom: {{ index === (lyricInfos.length - 1) ? (contentHeight/2+80): 0 }}px;"
+        >
+          {{item.text}}
+</view>
+```
+
+```js
+scroll-top="{{lyricScrollTop}}"
+
+// 改变scrollTop
+console.log(this.data.currentLyricText);
+this.setData({ lyricScrollTop: index * 35 })
+```
+
+7。传递参数
+
+```html
+data-item
+
+event
+
+event.currentTarget.dataset.item
+```
+
